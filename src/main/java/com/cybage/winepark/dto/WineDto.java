@@ -4,7 +4,7 @@ import lombok.*;
 
 //@AllArgsConstructor
 //@NoArgsConstructor
-//@Getter
+//@Getter 
 //@Setter
 //@ToString
 public class WineDto {
