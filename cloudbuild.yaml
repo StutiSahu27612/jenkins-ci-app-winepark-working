@@ -15,10 +15,10 @@ steps:
       args: ['test']
       dir: '/workspace'
 
-  # Step 4: Build the Docker image using the Dockerfile
-  # - name: 'gcr.io/cloud-builders/docker'
-  #   args: ['build', '-t', 'gcr.io/$PROJECT_ID/your-image-name:$COMMIT_SHA', '.']
-  #   dir: '/workspace'
+   # Step 4: Build the Docker image using the Dockerfile
+    - name: 'gcr.io/cloud-builders/docker'
+      args: ['build', '-t', 'gcr.io/potent-clarity-418606/your-image-name:my-image', '.']
+      dir: '/workspace'
 
   # Step 5: Push the Docker image to Google Container Registry
   # - name: 'gcr.io/cloud-builders/docker'
