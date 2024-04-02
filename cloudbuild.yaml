@@ -3,7 +3,7 @@ steps:
   # - name: 'gcr.io/cloud-builders/git'
   #   args: ['clone', '.']
 
-  Step 2: Build the Java Maven application
+  # Step 2: Build the Java Maven application
     - name: 'maven:3.8.4-openjdk-17'
       entrypoint: 'mvn'
       args: ['clean', 'package']
