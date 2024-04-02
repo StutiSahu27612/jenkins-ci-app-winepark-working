@@ -1,0 +1,29 @@
+steps:
+  # Step 1: Clone the repository
+  # - name: 'gcr.io/cloud-builders/git'
+  #   args: ['clone', '.']
+    
+  Step 2: Build the Java Maven application
+  - name: 'maven:3.8.4-openjdk-17'
+    entrypoint: 'mvn'
+    args: ['clean', 'package']
+    dir: '/workspace'
+     
+  # Step 3: Run tests (add your test command here)
+  - name: 'maven:3.8.4-openjdk-17'
+    entrypoint: 'mvn'
+    args: ['test']
+    dir: '/workspace'
+    
+  # Step 4: Build the Docker image using the Dockerfile
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args: ['build', '-t', 'gcr.io/$PROJECT_ID/your-image-name:$COMMIT_SHA', '.']
+  #   dir: '/workspace'
+    
+  # Step 5: Push the Docker image to Google Container Registry
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args: ['push', 'gcr.io/$PROJECT_ID/your-image-name:$COMMIT_SHA']
+
+
+options:
+  logging: CLOUD_LOGGING_ONLY
