@@ -1,21 +1,17 @@
 steps:
-  # Step 2: Build the Java Maven application
+  # Step 3: Build the Maven project
   - name: 'maven:3-eclipse-temurin-11-alpine'
     entrypoint: 'mvn'
     args: ['clean', 'install']
 
-
-  # Step 4: Build the Docker image using the Dockerfile
+  # Step 4: Containerize APP
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/myimage', '.']
+    args: [ 'build', '-t', 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/wine-park:$SHORT_SHA', '.' ]
+
 
 images:
-  - 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/myimage'
+  - 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/wine-park:$SHORT_SHA'
 
-
-# # Step 5: Push the Docker image to Artifact Registry
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['push', 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/myimage:$SHORT_SHA']
 
 options:
   logging: CLOUD_LOGGING_ONLY
