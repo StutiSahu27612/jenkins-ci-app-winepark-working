@@ -1,4 +1,4 @@
-steps:
+
 steps:
   # Step 3: Build the Maven project
   - name: 'maven:3-eclipse-temurin-11-alpine'
