@@ -5,12 +5,6 @@ steps:
     args: ['clean', 'install']
 
 
-  # Step 3: Run tests (add your test command here)
-  # - name: 'maven:3.8.4-openjdk-17'
-  #   entrypoint: 'mvn'
-  #   args: ['test']
-  #   dir: '/workspace'
-
   # Step 4: Build the Docker image using the Dockerfile
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/myimage', '.']
