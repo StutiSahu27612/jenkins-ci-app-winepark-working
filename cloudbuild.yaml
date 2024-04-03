@@ -1,6 +1,6 @@
 steps:
   # Step 2: Build the Java Maven application
-  - name: 'maven:3.8.4-openjdk-17'
+  - name: 'maven:3.8.4-openjdk-11'
     entrypoint: 'mvn'
     args: ['clean', 'package']
 
