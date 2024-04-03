@@ -13,7 +13,7 @@ steps:
   # Step 4: Build the Docker image using the Dockerfile
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/myimage', '.']
-    images: ['us-central1-docker.pkg.dev/potent-clarity-418606/registry/myimage']
+    id: 'Build Docker Image'
 
 # # Step 5: Push the Docker image to Artifact Registry
 # - name: 'gcr.io/cloud-builders/docker'
