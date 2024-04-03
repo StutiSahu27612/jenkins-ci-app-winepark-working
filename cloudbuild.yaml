@@ -3,22 +3,23 @@ steps:
   - name: 'maven:3.8.4-openjdk-17'
     entrypoint: 'mvn'
     args: ['clean', 'package']
-    dir: '/workspace'
+  
 
   # Step 3: Run tests (add your test command here)
-  - name: 'maven:3.8.4-openjdk-17'
-    entrypoint: 'mvn'
-    args: ['test']
-    dir: '/workspace'
+  # - name: 'maven:3.8.4-openjdk-17'
+  #   entrypoint: 'mvn'
+  #   args: ['test']
+  #   dir: '/workspace'
 
   # Step 4: Build the Docker image using the Dockerfile
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/my-imager', '.']
-    dir: '/workspace'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/myimage:$SHORT_SHA', '.']
+  images: ['us-central1-docker.pkg.dev/potent-clarity-418606/registry/myimage:$SHORT_SHA']
+    
 
-  # Step 5: Push the Docker image to Artifact Registry
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/my-imager']
+  # # Step 5: Push the Docker image to Artifact Registry
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args: ['push', 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/myimage:$SHORT_SHA']
 
 options:
   logging: CLOUD_LOGGING_ONLY
