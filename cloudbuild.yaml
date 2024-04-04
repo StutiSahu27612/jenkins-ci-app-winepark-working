@@ -16,17 +16,14 @@ steps:
     args: ['build', '-t', 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/my-imager', '.']
     dir: '/workspace'
 
-
-   - name: 'gcr.io/cloud-builders/docker'
+  - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/my-imager']
     dir: '/workspace'
     
-    #step 6: Deploy GAR image to App Engine
+  # Step 6: Deploy GAR image to App Engine
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: [ 'app', 'deploy', '--image-url', 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/my-imager' 
-
-images:
-  - 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/my-imager'
-
-options:
-  logging: CLOUD_LOGGING_ONLY
+    args: [ 'app', 'deploy', '--image-url', 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/my-imager' ]
+    images:
+      - 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/my-imager'
+    options:
+      logging: CLOUD_LOGGING_ONLY
