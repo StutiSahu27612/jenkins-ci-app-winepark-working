@@ -1,23 +1,28 @@
 
 steps:
-  # Step 3: Build the Maven project
-  - name: 'maven:3-eclipse-temurin-11-alpine'
+  # Step 1: Build the Maven project
+  - name: 'maven:3.8.1-openjdk-11'
     entrypoint: 'mvn'
-    args: ['clean', 'install']
+    args: ['clean', 'package', '-DskipTests']
 
-  # Step 4: Containerize APP
+  # Step 2: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/wine-park:$SHORT_SHA', '.' ]
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/your-image-name:$SHORT_SHA', '.']
 
+  # Step 3: Push the Docker image to Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/your-image-name:$SHORT_SHA']
 
+  # Step 4: Deploy the Docker image to Google App Engine
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['app', 'deploy', '--image-url=us-central1-docker.pkg.dev/potent-clarity-418606/registry/wine-park:$SHORT_SHA']
-
-
+    args: [
+      'run', 'deploy', 'your-service-name',
+      '--image', 'gcr.io/$PROJECT_ID/your-image-name:$SHORT_SHA',
+      '--platform', 'managed'
+    ]
 
 images:
-  - 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/wine-park:$SHORT_SHA'
-
+  - 'gcr.io/$PROJECT_ID/your-image-name:$SHORT_SHA'
 
 options:
   logging: CLOUD_LOGGING_ONLY
