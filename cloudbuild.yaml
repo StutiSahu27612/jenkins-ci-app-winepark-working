@@ -12,6 +12,6 @@ steps:
 images:
   - 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/wine-park:$SHORT_SHA'
 
-#hello
+
 options:
   logging: CLOUD_LOGGING_ONLY
