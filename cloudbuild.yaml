@@ -1,29 +1,63 @@
-steps:
-  # Step 2: Build the Java Maven application
-  - name: 'maven:3.8.4-openjdk-17'
-    entrypoint: 'mvn'
-    args: ['clean', 'package']
-    dir: '/workspace'
+# steps:
+#   # Step 2: Build the Java Maven application
+#   - name: 'maven:3.8.4-openjdk-17'
+#     entrypoint: 'mvn'
+#     args: ['clean', 'package']
+#     dir: '/workspace'
 
-  # # Step 3: Run tests (add your test command here)
-  # - name: 'maven:3.8.4-openjdk-17'
-  #   entrypoint: 'mvn'
-  #   args: ['test']
-  #   dir: '/workspace'
+#   # # Step 3: Run tests (add your test command here)
+#   # - name: 'maven:3.8.4-openjdk-17'
+#   #   entrypoint: 'mvn'
+#   #   args: ['test']
+#   #   dir: '/workspace'
 
-  # Step 4: Build the Docker image using the Dockerfile
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/my-imager', '.']
-    dir: '/workspace'
+#   # Step 4: Build the Docker image using the Dockerfile
+#   - name: 'gcr.io/cloud-builders/docker'
+#     args: ['build', '-t', 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/my-imager', '.']
+#     dir: '/workspace'
 
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/my-imager']
-    dir: '/workspace'
+#   - name: 'gcr.io/cloud-builders/docker'
+#     args: ['push', 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/my-imager']
+#     dir: '/workspace'
     
-  # Step 6: Deploy GAR image to App Engine
+#   # Step 6: Deploy GAR image to App Engine
+#   - name: 'gcr.io/cloud-builders/gcloud'
+#     args: [ 'app', 'deploy', '--image-url', 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/my-imager' ]
+#     images:
+#       - 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/my-imager'
+#     options:
+#       logging: CLOUD_LOGGING_ONLY
+steps:
+ #  Step 1: Git Clone
+ # - name: 'gcr.io/cloud-builders/git'
+ #   args: ['clone', 'https://github.com/yuktaakhade/wine-park.git', 'source']
+
+#  # Step 2: Check Maven Version & Run Unit Tests
+#  - name: 'maven:3'
+#    entrypoint: 'mvn'
+#    args: ['test']
+#
+  # Step 3: Build the Maven project
+  - name: 'maven:3-eclipse-temurin-11-alpine'
+    entrypoint: 'mvn'
+    args: ['clean', 'install']
+
+  # Step 4: Containerize APP
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/jenkins:$SHORT_SHA', '.' ]
+    
+    #Step 5: Docker push to Google Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'push', 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/jenkins:$SHORT_SHA' ]
+
+    #step 6: Deploy GAR image to App Engine
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: [ 'app', 'deploy', '--image-url', 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/my-imager' ]
-    images:
-      - 'us-central1(iowa)-docker.pkg.dev/potent-clarity-418606/registry/my-imager'
-    options:
-      logging: CLOUD_LOGGING_ONLY
+    args: [ 'app', 'deploy', '--image-url', 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/jenkins:$SHORT_SHA' ]
+
+images:
+  - 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/jenkins:$SHORT_SHA'
+
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
