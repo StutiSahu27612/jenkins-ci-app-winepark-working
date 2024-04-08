@@ -7,7 +7,7 @@ spring:
     username: root
     password: root 
   jpa:
-    hibernate:
+    hibernate: 
       ddl-auto: update
     properties:
       hibernate:
