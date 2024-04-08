@@ -3,7 +3,7 @@ steps:
   - name: 'maven:3-eclipse-temurin-11-alpine'
     entrypoint: 'mvn'
     args: ['clean', 'install']
-
+ 
   # Containerize APP (docker build)
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'build', '-t', 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/wine:$SHORT_SHA', '.' ]
