@@ -8,7 +8,7 @@ runtime_config:
   jdk: openjdk11
 handlers:
   - url: /.*
-    script: auto
+    script: auto 
 manual_scaling:
   instances: 1
 # runtime: java
