@@ -3,7 +3,7 @@ network:
   subnetwork_name: private
   session_affinity: true
 runtime: java
-env: flex
+env: flex 
 runtime_config:
   jdk: openjdk11
 handlers:
