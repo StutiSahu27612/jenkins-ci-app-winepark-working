@@ -4,7 +4,7 @@ network:
   subnetwork_name: subnet3
   session_affinity: true
   forwarded_ports:
-    - 2222/tcp
+    - 8080/tcp
 runtime: java
 env: flex
 runtime_config:
