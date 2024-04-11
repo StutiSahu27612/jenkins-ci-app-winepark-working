@@ -1,6 +1,6 @@
 network:
-  name: default
-  subnetwork_name: private
+  name: my-vpc
+  subnetwork_name: subnet2
   session_affinity: true
 runtime: java
 env: flex 
