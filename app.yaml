@@ -1,6 +1,6 @@
 network:
   name: my-vpc
-  subnetwork_name: subnet2
+  subnetwork_name: subnet3
   session_affinity: true
 runtime: java
 env: flex 
