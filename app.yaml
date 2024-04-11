@@ -1,6 +1,5 @@
 network:
   name: my-vpc
-  instance_ip_mode: internal
   subnetwork_name: subnet3
   session_affinity: true
 runtime: java
