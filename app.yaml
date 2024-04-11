@@ -3,8 +3,8 @@ network:
   instance_ip_mode: internal
   subnetwork_name: subnet3
   session_affinity: true
-  forwarded_ports:
-    - 8080/tcp
+  # forwarded_ports:
+  #   - 8080/tcp
 runtime: java
 env: flex
 runtime_config:
