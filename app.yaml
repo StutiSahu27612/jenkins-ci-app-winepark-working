@@ -1,17 +1,20 @@
 network:
   name: my-vpc
-  # instance_ip_mode: internal
+  instance_ip_mode: internal
   subnetwork_name: subnet3
   session_affinity: true
+  forwarded_ports:
+    - 8080/tcp
 runtime: java
-env: flex 
+env: flex
 runtime_config:
   jdk: openjdk11
 handlers:
   - url: /.*
-    script: auto 
+    script: auto
 manual_scaling:
   instances: 1
+
 # runtime: java
 # env: flex
 # runtime_config:
