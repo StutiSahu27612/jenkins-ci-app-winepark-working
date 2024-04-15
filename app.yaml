@@ -18,8 +18,8 @@ service: my-private-service
 network:
   instance_tag: private-service 
   name: default
-  session_affinity: true
-  ingress: internal  # Removed 'ports' section
+inbound_services:
+  - internal
 
 
 
