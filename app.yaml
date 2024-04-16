@@ -1,6 +1,6 @@
 runtime: java
 env: flex
-runtime_config:
+runtime_config: 
   jdk: openjdk11
 
 # Define environment variables for your SQL database connection
