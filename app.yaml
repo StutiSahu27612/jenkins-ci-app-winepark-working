@@ -1,33 +1,33 @@
-runtime: java
-env: flex
-runtime_config: 
-  jdk: openjdk11
+# runtime: java
+# env: flex
+# runtime_config: 
+#   jdk: openjdk11
 
-# Define environment variables for your SQL database connection
-env_variables:
-  CLOUD_SQL_USERNAME: root
-  CLOUD_SQL_PASSWORD: root
-  CLOUD_SQL_DATABASE_NAME: wine
-  CLOUD_SQL_CONNECTION_NAME: winepotent-clarity-418606:us-central1:private-instance
-# Define a custom network for your application
-network:
-  name: projects/potent-clarity-418606/global/networks/default
-
-# Define the Serverless VPC Access connector
-vpc_access_connector:
-  name: "projects/potent-clarity-418606/locations/us-central1/connectors/default-con"
-
-handlers:
-  - url: /.*
-    script: this-field-is-required-but-not-used
-
-manual_scaling:
-  instances: 1
-
-
-
-
+# # Define environment variables for your SQL database connection
+# env_variables:
+#   CLOUD_SQL_USERNAME: root
+#   CLOUD_SQL_PASSWORD: root
+#   CLOUD_SQL_DATABASE_NAME: wine
+#   CLOUD_SQL_CONNECTION_NAME: winepotent-clarity-418606:us-central1:private-instance
+# # Define a custom network for your application
 # network:
+#   name: projects/potent-clarity-418606/global/networks/default
+
+# # Define the Serverless VPC Access connector
+# vpc_access_connector:
+#   name: "projects/potent-clarity-418606/locations/us-central1/connectors/default-con"
+
+# handlers:
+#   - url: /.*
+#     script: this-field-is-required-but-not-used
+
+# manual_scaling:
+#   instances: 1
+
+
+
+
+# # network:
 #   name: my-vpc
 #   instance_ip_mode: internal
 #   subnetwork_name: subnet3
@@ -94,12 +94,12 @@ manual_scaling:
 
 
 #Working file
-# runtime: java
-# env: flex
-# runtime_config:
-#   jdk: openjdk11
-# handlers:
-#   - url: /.*
-#     script: auto
-# manual_scaling:
-#   instances: 1
+runtime: java
+env: flex
+runtime_config:
+  jdk: openjdk11
+handlers:
+  - url: /.*
+    script: auto
+manual_scaling:
+  instances: 1
