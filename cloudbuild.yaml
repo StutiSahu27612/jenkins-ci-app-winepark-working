@@ -14,7 +14,7 @@ steps:
 
   # Deploy GAR image to App Engine
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: [ 'app', 'deploy', '--image-url', 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/wine:$SHORT_SHA' ]
+    args: [ 'app', 'deploy', '--image-url', 'us-central1-docker.pkg.dev/potent-clarity-418606/wineparkapp-repo/wineparkapp-images:$SHORT_SHA' ]
 
 images:
   - 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/wine:$SHORT_SHA'
