@@ -6,11 +6,11 @@ steps:
  
   # Containerize APP (docker build)
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'us-central1-docker.pkg.dev/potent-clarity-418606/registry/wine:$SHORT_SHA', '.' ]
+    args: [ 'build', '-t', 'us-central1-docker.pkg.dev/potent-clarity-418606/wineparkapp-repo/wineparkapp-images:$SHORT_SHA', '.' ]
 
   # Docker push to Google Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'push',  'us-central1-docker.pkg.dev/potent-clarity-418606/registry/wine:$SHORT_SHA' ]
+    args: [ 'push',  'us-central1-docker.pkg.dev/potent-clarity-418606/wineparkapp-repo/wineparkapp-images:$SHORT_SHA' ]
 
   # Deploy GAR image to App Engine
   - name: 'gcr.io/cloud-builders/gcloud'
