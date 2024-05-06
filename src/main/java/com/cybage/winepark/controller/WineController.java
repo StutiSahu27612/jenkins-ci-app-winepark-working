@@ -13,10 +13,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*; 
 import com.cybage.winepark.service.WineServiceImpl;
 import com.cybage.winepark.dto.WineDto;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.io.BufferedReader;
@@ -63,6 +68,24 @@ public class WineController {
         return new ResponseEntity<>(wines,headers, HttpStatus.OK);
     }
 
+    @GetMapping("health")
+    public String checkHealth(HttpServletResponse response) {
+        log.info("CONTROLLER: health check");
+
+        // Get the IP address of the VM
+        String ipAddress = null;
+        try {
+            ipAddress = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            log.error("Failed to get IP address: {}", e.getMessage());
+        }
+
+        // Set the HTTP status code to 200 OK
+        response.setStatus(HttpServletResponse.SC_OK);
+
+        // Return the IP address along with the status message
+        return "Status: 200 OK\nIP Address: " + ipAddress;
+    }
     @GetMapping("getWineById/{id}")
     public  ResponseEntity<Wine> getWineById(@PathVariable("id") Integer id) {
         log.info("CONTROLLER: getWineById");
