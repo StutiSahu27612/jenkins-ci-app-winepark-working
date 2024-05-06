@@ -1,7 +1,12 @@
 
 #Working code 
-
 steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - -c
+      - |
+        curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/zone
   # Build the Maven project
    # - name: 'maven:3-eclipse-temurin-11-alpine'
   - name: 'gcr.io/cloud-builders/mvn'
