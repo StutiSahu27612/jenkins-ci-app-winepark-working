@@ -7,7 +7,7 @@ steps:
       - -c
       - |
         # Retrieve the region from the instance metadata server
-        REGION=$(curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/zone | cut -d '/' -f 4)
+        export REGION=$(curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/zone | cut -d '/' -f 4)
 
         # Display the region along with the log message
         echo "Region: $REGION"
