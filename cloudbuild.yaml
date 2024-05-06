@@ -1,6 +1,7 @@
 steps:
   # Build the Maven project
-  - name: 'maven:3-eclipse-temurin-11-alpine'
+   # - name: 'maven:3-eclipse-temurin-11-alpine'
+  - name: 'gcr.io/cloud-builders/mvn'
     entrypoint: 'mvn'
     args: ['clean', 'install']
  
