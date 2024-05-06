@@ -6,12 +6,14 @@ steps:
     args:
       - -c
       - |
-        curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/zone
-  # Build the Maven project
-   # - name: 'maven:3-eclipse-temurin-11-alpine'
-  - name: 'gcr.io/cloud-builders/mvn'
-    entrypoint: 'mvn'
-    args: ['clean', 'install']
+        # Retrieve the region from the instance metadata server
+        REGION=$(curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/zone | cut -d '/' -f 4)
+
+        # Display the region along with the log message
+        echo "Region: $REGION"
+     
+
+  
  
   # Containerize APP (docker build)
   - name: 'gcr.io/cloud-builders/docker'
