@@ -1,18 +1,10 @@
 
 #Working code 
 steps:
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args:
-      - -c
-      - |
-        # Retrieve the region from the instance metadata server
-        export REGION=$(curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/zone | cut -d '/' -f 4)
-
-        # Display the region along with the log message
-        echo "Region: $REGION"
-     
-
+  
+  - name: 'gcr.io/cloud-builders/mvn'
+    entrypoint: 'mvn'
+    args: ['clean', 'install']
   
  
   # Containerize APP (docker build)
