@@ -1,13 +1,16 @@
 steps:
   # Build the Maven project
-   # - name: 'maven:3-eclipse-temurin-11-alpine'
   - name: 'gcr.io/cloud-builders/mvn'
     entrypoint: 'mvn'
     args: ['clean', 'install']
+    env:
+      - 'GOOGLE_REGION=us-central1'
  
   # Containerize APP (docker build)
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'build', '-t', 'us-central1-docker.pkg.dev/potent-clarity-418606/wineparkapp-repo/wineparkapp-images:$SHORT_SHA', '.' ]
+    env:
+      - 'GOOGLE_REGION=us-central1'
 
   # Docker push to Google Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -15,10 +18,47 @@ steps:
 
   # Deploy GAR image to App Engine
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: [ 'app', 'deploy', '--image-url', 'us-central1-docker.pkg.dev/potent-clarity-418606/wineparkapp-repo/wineparkapp-images:$SHORT_SHA' ]
+    args: [ 'app', 'deploy', '--image-url', 'us-central1-docker.pkg.dev/potent-clarity-418606/wineparkapp-repo/wineparkapp-images:$SHORT_SHA', '--region', 'us-west2' ]
 
 images:
   - 'us-central1-docker.pkg.dev/potent-clarity-418606/wineparkapp-repo/wineparkapp-images:$SHORT_SHA'
 
 options:
   logging: CLOUD_LOGGING_ONLY
+
+
+
+
+
+
+
+
+
+
+
+#Working code 
+
+# steps:
+#   # Build the Maven project
+#    # - name: 'maven:3-eclipse-temurin-11-alpine'
+#   - name: 'gcr.io/cloud-builders/mvn'
+#     entrypoint: 'mvn'
+#     args: ['clean', 'install']
+ 
+#   # Containerize APP (docker build)
+#   - name: 'gcr.io/cloud-builders/docker'
+#     args: [ 'build', '-t', 'us-central1-docker.pkg.dev/potent-clarity-418606/wineparkapp-repo/wineparkapp-images:$SHORT_SHA', '.' ]
+
+#   # Docker push to Google Artifact Registry
+#   - name: 'gcr.io/cloud-builders/docker'
+#     args: [ 'push',  'us-central1-docker.pkg.dev/potent-clarity-418606/wineparkapp-repo/wineparkapp-images:$SHORT_SHA' ]
+
+#   # Deploy GAR image to App Engine
+#   - name: 'gcr.io/cloud-builders/gcloud'
+#     args: [ 'app', 'deploy', '--image-url', 'us-central1-docker.pkg.dev/potent-clarity-418606/wineparkapp-repo/wineparkapp-images:$SHORT_SHA' ]
+
+# images:
+#   - 'us-central1-docker.pkg.dev/potent-clarity-418606/wineparkapp-repo/wineparkapp-images:$SHORT_SHA'
+
+# options:
+#   logging: CLOUD_LOGGING_ONLY
