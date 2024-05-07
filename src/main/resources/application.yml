@@ -5,7 +5,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://34.29.93.201/wine
     username: root
-    password: root 
+    password: ${sm://projects/779199585298/secrets/password}
   jpa:
     hibernate: 
       ddl-auto: update

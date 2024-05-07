@@ -4,7 +4,7 @@ substitutions:
   _PROJECT_ID: potent-clarity-418606 # Replace with your GCP project ID
   _REGION: us-central1 # Replace with your desired Compute Engine region
   _ARTIFACTORY_REGISTRY_REPO: wineparkapp-repo # Replace with Artifact Registry Repository Name
-  _IMAGE_NAME: wineparkapp-images:v11 # Replace with your image name in Artifact Registry
+  _IMAGE_NAME: wineparkapp-images:v2 # Replace with your image name in Artifact Registry
 steps:
   
   - name: 'gcr.io/cloud-builders/mvn'
