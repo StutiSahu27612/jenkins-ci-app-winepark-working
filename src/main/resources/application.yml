@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://34.29.93.201/wine
+    url: jdbc:mysql://10.15.16.5/wine
     username: root
     password: root
   jpa:
