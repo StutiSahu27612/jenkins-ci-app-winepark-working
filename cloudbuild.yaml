@@ -22,8 +22,8 @@ steps:
     args: [ 'push',  '$_REGION-docker.pkg.dev/$_PROJECT_ID/$_ARTIFACTORY_REGISTRY_REPO/$_IMAGE_NAME' ]
 
   # Deploy GAR image to App Engine
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: [ 'app', 'deploy', '--image-url', '$_REGION-docker.pkg.dev/$_PROJECT_ID/$_ARTIFACTORY_REGISTRY_REPO/$_IMAGE_NAME' ]
+  # - name: 'gcr.io/cloud-builders/gcloud'
+  #   args: [ 'app', 'deploy', '--image-url', '$_REGION-docker.pkg.dev/$_PROJECT_ID/$_ARTIFACTORY_REGISTRY_REPO/$_IMAGE_NAME' ]
 
 images:
   - '$_REGION-docker.pkg.dev/$_PROJECT_ID/$_ARTIFACTORY_REGISTRY_REPO/$_IMAGE_NAME'
